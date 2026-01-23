@@ -1,0 +1,264 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Pipeline - Terraform + Docker + AWS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        .info-value {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #10b981;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 20px 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .links {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .link-button {
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .link-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .version {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="icon">🚀</div>
+        <h1>Pipeline CI/CD Completa</h1>
+        <p class="subtitle">Deploy Automatizado com Terraform + Docker + AWS + GitHub Actions</p>
+
+        <div class="status">
+            ✓ Deploy Concluído com Sucesso
+        </div>
+
+        <div class="tech-stack">
+            <div class="tech-badge">
+                <span>☁️</span> AWS EC2
+            </div>
+            <div class="tech-badge">
+                <span>🐳</span> Docker
+            </div>
+            <div class="tech-badge">
+                <span>⚙️</span> Terraform
+            </div>
+            <div class="tech-badge">
+                <span>🔄</span> GitHub Actions
+            </div>
+            <div class="tech-badge">
+                <span>🌐</span> Nginx
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-item">
+                <span class="info-label">📦 Versão</span>
+                <span class="info-value">v1.0.0</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">🕐 Deploy</span>
+                <span class="info-value" id="deploy-time">Loading...</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">🔧 Container</span>
+                <span class="info-value">Docker + Nginx</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">🌍 Servidor</span>
+                <span class="info-value" id="hostname">AWS EC2</span>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/seu-usuario/projeto-cicd" target="_blank" class="link-button">
+                📁 Ver Código
+            </a>
+            <a href="https://linkedin.com/in/seu-perfil" target="_blank" class="link-button">
+                💼 LinkedIn
+            </a>
+        </div>
+
+        <div class="version">
+            Build ID: <span id="build-id">main-latest</span>
+        </div>
+
+        <footer>
+            <p>✨ Infraestrutura provisionada via Terraform | Deploy automatizado via GitHub Actions</p>
+        </footer>
+    </div>
+
+    <script>
+        // Exibe data/hora do deploy
+        document.getElementById('deploy-time').textContent = new Date().toLocaleString('pt-BR');
+
+        // Exibe hostname se disponível
+        document.getElementById('hostname').textContent = window.location.hostname || 'AWS EC2';
+    </script>
+</body>
+
+</html>
+```
