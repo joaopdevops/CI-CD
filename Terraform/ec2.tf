@@ -6,21 +6,13 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = [aws_security_group.web_sg.id]
 
   user_data = <<-EOF
-
-    apt-get update
-    
-
-    apt-get install -y docker.io
-    
-
-    systemctl start docker
-    
-
-    systemctl enable docker
-    
-
-    usermod -aG docker ubuntu
-  EOF
+#!/bin/bash
+apt-get update
+apt-get install -y docker.io
+systemctl start docker
+systemctl enable docker
+usermod -aG docker ubuntu
+EOF
 
   tags = {
     Name = "projeto-cicd-web-server"
