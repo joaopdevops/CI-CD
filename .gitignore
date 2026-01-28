@@ -4,18 +4,70 @@
 *.tfstate
 *.tfstate.*
 *.tfvars
+*.tfvars.json
 crash.log
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+.terraform.tfstate.lock.info
+
+# Chaves e Credenciais
+*.pem
+*.key
+*.ppk
+*.p12
+*.pfx
+.env
+.env.*
+credentials
+aws_credentials
+*.credentials
+
+# Scripts de setup
+setup-backend.sh
+
+# Logs
+*.log
+*.tmp
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-*
+.project
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+ENV/
+
+# Node
+node_modules/
+package-lock.json
+
+# Docker
+docker-compose.override.yml
+
+# Backup
+*.bak
+*.backup
+*~
+.*.swp
+
+# Outros
+.cache/
+.pytest_cache/

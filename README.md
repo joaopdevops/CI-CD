@@ -195,6 +195,17 @@ O pipeline é executado automaticamente em cada push para a branch `main` e segu
 - Credenciais armazenadas como GitHub Secrets
 - Chaves SSH nunca commitadas no repositório
 
+## ⚠️ Notas de Segurança
+
+Este projeto foi desenvolvido para fins educacionais utilizando infraestrutura descartável.
+
+Algumas configurações (como acesso SSH aberto para 0.0.0.0/0 e nomes de recursos explícitos) foram intencionalmente mantidas simples para focar no aprendizado de Terraform, redes AWS, Docker e pipelines CI/CD.
+
+Em um ambiente de produção, estas configurações seriam reforçadas através de:
+- Restrição de acesso SSH para IPs específicos ou uso do AWS SSM Session Manager
+- Uso de nomes de recursos totalmente parametrizados
+- Aplicação de políticas IAM com menor privilégio (least privilege)
+
 ### Próximos Projetos
 
 Para criar novos projetos usando o mesmo backend:
@@ -223,7 +234,7 @@ terraform {
 
 Este projeto está sob a licença MIT.
 
-## ✨ Autor
+##  Autor
 
 **João Pedro**
 
