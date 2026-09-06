@@ -1,3 +1,32 @@
+# ============================================================
+# TRAVA DE SEGURANCA - este repo esta na raiz do /home/jp
+# Logica: ignora TUDO por padrao, e libera so o que e do projeto.
+# Assim uma chave SSH/AWS nova nunca entra por descuido.
+# Pra versionar uma pasta nova: adiciona um "!/nome-da-pasta/" abaixo.
+# ============================================================
+
+/*
+
+!/.github/
+!/App/
+!/Terraform/
+!/README.md
+!/README_EN.md
+!/.gitignore
+
+# ============================================================
+# 2a camada: mesmo DENTRO das pastas liberadas, isso nunca entra
+# ============================================================
+.ssh/
+.aws/
+.gnupg/
+.pki/
+id_rsa*
+id_ed25519*
+id_ecdsa*
+*_history
+.claude.json
+.netrc
 # Terraform
 **/.terraform/*
 **/.terraform.lock.hcl
